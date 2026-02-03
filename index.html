@@ -52,14 +52,12 @@ section{padding:40px 16px}
 .hot-desc{font-size:13px;color:var(--muted)}
 .fire-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#ffb300;color:#000}
 
-/* Fast Sales LIMITED badge (red only) */
-.fire-badge-limited{
-  background:#ff3b3b;
-  color:#fff;
-}
+/* Fast Sales LIMITED badge */
+.fire-badge-limited{background:#ff3b3b;color:#fff}
 
 .controls{margin-bottom:14px}
 .search-box{padding:14px;border-radius:14px;border:none;background:rgba(255,255,255,.08);color:#fff;width:100%;max-width:360px}
+
 .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .filter-btn{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:12px;cursor:pointer}
 .filter-btn.active{background:var(--accent);color:#000}
@@ -73,7 +71,7 @@ section{padding:40px 16px}
 .product-icon img{width:34px;filter:invert(1)}
 .product-price{font-weight:800;margin-top:6px}
 .product-actions{margin-top:8px}
-.check-btn{appearance:none;border:none;cursor:pointer;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;background:var(--accent);color:#000}
+.check-btn{border:none;cursor:pointer;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;background:var(--accent);color:#000}
 .check-btn:hover{background:var(--accent-dark)}
 
 .type-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
@@ -82,27 +80,13 @@ section{padding:40px 16px}
 .type-pc{background:#4dd2ff;color:#000}
 .type-accessory{background:#ff7a7a;color:#000}
 
-.condition-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:999px;text-transform:uppercase}
+.condition-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:999px}
 .condition-new{background:rgba(255,216,77,.45)}
 .condition-used{background:rgba(255,255,255,.12)}
 
-.service-chip{background:rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;cursor:pointer;transition:.2s}
-.service-chip:hover{background:rgba(255,216,77,.25)}
-.service-chip.primary{border:1px solid rgba(255,216,77,.6);color:#ffd84d}
-
-.banner-services,.banner-social{opacity:0;transform:translateY(8px);animation:fadeUp .6s ease forwards}
-.banner-social{animation-delay:.15s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-
-.social-wrap{align-items:center}
-.social-item{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,.08);transition:background .2s ease, transform .2s ease}
-.social-item img{width:20px;filter:invert(1);opacity:.9;transition:transform .2s ease}
-.social-item:hover{background:rgba(255,216,77,.25);transform:translateY(-2px)}
-.social-item:hover img{transform:scale(1.1)}
-
 footer{text-align:center;padding:24px;color:#aaa}
 
-/* ===== Fast Sales Glow Effect ===== */
+/* Fast Sales Glow */
 .fast-glow{
   box-shadow:0 0 18px rgba(255,216,77,.55), inset 0 0 12px rgba(255,216,77,.25);
   animation:glowPulse 2.2s ease-in-out infinite;
@@ -135,46 +119,29 @@ footer{text-align:center;padding:24px;color:#aaa}
     <div class="banner-card">
       <h1>FAZGAME</h1>
       <p class="tagline"><strong>Faz</strong> Service, <strong>Faz</strong> Gaming</p>
-      <div class="banner-services" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,.85)">
-        <span class="service-chip primary" data-scroll="hot">Custom PC Build</span>
-        <span class="service-chip" data-scroll="hot">PC Parts & Upgrade</span>
-        <span class="service-chip" data-scroll="stock">Console & Games</span>
-        <span class="service-chip" data-scroll="stock">Repair & Setup</span>
-      </div>
-      <div class="banner-social social-wrap" style="margin-top:14px;display:flex;gap:18px">
-        <a class="social-item" href="https://www.tiktok.com/@syazeone?_r=1&_t=ZS-93ajAdKxDUL" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/tiktok.svg"></a>
-        <a class="social-item" href="https://wa.me/60163691936" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/whatsapp.svg"></a>
-        <a class="social-item" href="https://www.instagram.com/fazgame_empire/" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/instagram.svg"></a>
-        <a class="social-item" href="https://www.facebook.com/share/1DHZdLi62G/" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/facebook.svg"></a>
-        <a class="social-item" href="https://t.me/fazgameofficial" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/telegram.svg"></a>
-      </div>
     </div>
   </div>
 </div>
 
-<div class="sticky-cta"><a href="https://wa.me/60163691936" target="_blank" class="btn">Chat on WhatsApp</a></div>
+<div class="sticky-cta">
+  <a href="https://wa.me/60163691936" target="_blank" class="btn">Chat on WhatsApp</a>
+</div>
 
 <section id="fast-sales">
   <h2 class="section-title">Fast Sales</h2>
-  <div class="hot-grid">
-    <div class="hot-card fast-glow"><span class="fire-badge fire-badge-limited">LIMITED</span><div class="hot-title">PS5 Disc Set</div><div class="hot-desc">Limited Stock</div></div>
-    <div class="hot-card fast-glow"><span class="fire-badge fire-badge-limited">LIMITED</span><div class="hot-title">RTX Gaming PC</div><div class="hot-desc">Best Seller</div></div>
-  </div>
+  <div class="hot-grid" id="fastGrid"></div>
 </section>
 
 <section id="hot">
   <h2 class="section-title">Hot Items</h2>
-  <div class="hot-grid">
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM2,000</div><div class="hot-desc">Entry Gaming</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM3,000</div><div class="hot-desc">Balanced Build</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM4,000</div><div class="hot-desc">High Performance</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">Custom PC</div><div class="hot-desc">Free Setup</div></div>
-  </div>
+  <div class="hot-grid" id="hotGrid"></div>
 </section>
 
 <section id="stock">
   <h2 class="section-title">Stock Available</h2>
-  <div class="controls"><input id="search" class="search-box" placeholder="Search item"></div>
+  <div class="controls">
+    <input id="search" class="search-box" placeholder="Search item">
+  </div>
   <div class="filter-tabs" id="filters"></div>
   <div class="product-grid" id="grid"></div>
 </section>
@@ -182,102 +149,51 @@ footer{text-align:center;padding:24px;color:#aaa}
 <footer>© 2026 FAZGAME • Faz Service, Faz Gaming</footer>
 
 <script type="module">
-let products = [];
+/******** FAST SALES & HOT ITEMS (LOAD FROM JS) ********/
+let FAST_SALES = [];
+let HOT_ITEMS = [];
+
 try {
-  const module = await import('./stock.js');
-  products = module.STOCK || [];
+  const sales = await import('./sales.js');
+  FAST_SALES = Array.isArray(sales.FAST_SALES) ? sales.FAST_SALES : [];
+  HOT_ITEMS  = Array.isArray(sales.HOT_ITEMS)  ? sales.HOT_ITEMS  : [];
 } catch (e) {
-  products = [];
+  FAST_SALES = [];
+  HOT_ITEMS  = [];
 }
 
-const slides=document.querySelectorAll('.banner-slide');
-let i=0;
-setInterval(()=>{
-  slides[i].classList.remove('active');
-  i=(i+1)%slides.length;
-  slides[i].classList.add('active');
-},4000);
-
-const icons={
- console:'https://api.iconify.design/mdi/console.svg',
- ps5:'https://api.iconify.design/simple-icons/playstation.svg',
- ps4:'https://api.iconify.design/simple-icons/playstation.svg',
- xbox:'https://api.iconify.design/simple-icons/xbox.svg',
- switch:'https://api.iconify.design/simple-icons/nintendoswitch.svg',
- pc:'https://api.iconify.design/mdi/desktop-classic.svg',
- other:'https://api.iconify.design/mdi/gamepad-variant.svg'
-};
-
-const categories=['all','console','ps5','ps4','xbox','switch','pc','other'];
-let active='all';
-const filters=document.getElementById('filters');
-const grid=document.getElementById('grid');
-const search=document.getElementById('search');
-
-categories.forEach(cat=>{
-  const b=document.createElement('button');
-  b.className='filter-btn'+(cat==='all'?' active':'');
-  b.dataset.filter=cat;
-  b.innerHTML=`${cat.toUpperCase()} <span class="filter-count" id="count-${cat}"></span>`;
-  b.addEventListener('click',()=>{
-    active=cat;
-    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x.dataset.filter===cat));
-    update();
-  });
-  filters.appendChild(b);
-});
-
-function update(){
-  if(products.length===0){
-    grid.innerHTML='<div style="padding:20px;border-radius:12px;background:rgba(255,255,255,.06);text-align:center;color:#ffd84d;font-weight:700">No stock available at the moment</div>';
-    categories.forEach(c=>{
-      const el=document.getElementById('count-'+c);
-      if(el) el.textContent='0';
-    });
-    return;
-  }
-  const q=search.value.toLowerCase();
-  const list=products.filter(p=>(active==='all'||p.c===active)&&p.n.toLowerCase().includes(q));
-  grid.innerHTML='';
-  list.forEach(p=>{
-    grid.insertAdjacentHTML('beforeend',`
-      <div class="product-card">
-        <span class="condition-badge condition-${p.cond}">${p.cond}</span>
-        <span class="type-badge type-${p.type}">${p.type.toUpperCase()}</span>
-        <div class="product-icon"><img src="${icons[p.c]}"></div>
-        <div>
-          ${p.n}
-          <div class="product-price">RM${p.p}</div>
-          <div class="product-actions">
-            <button class="check-btn" data-name="${p.n}" data-price="${p.p}" data-cond="${p.cond}">Check availability</button>
-          </div>
-        </div>
-      </div>`);
-  });
-  categories.forEach(c=>{
-    const el=document.getElementById('count-'+c);
-    if(el) el.textContent=c==='all'?products.length:products.filter(p=>p.c===c).length;
+// Fast Sales
+const fastGrid = document.getElementById('fastGrid');
+if (FAST_SALES.length === 0) {
+  document.getElementById('fast-sales').style.display = 'none';
+} else {
+  FAST_SALES.forEach(item => {
+    fastGrid.insertAdjacentHTML('beforeend', `
+      <div class="hot-card fast-glow">
+        ${item.limited ? '<span class="fire-badge fire-badge-limited">LIMITED</span>' : ''}
+        <div class="hot-title">${item.name}</div>
+        <div class="hot-desc">${item.type} • ${item.condition}</div>
+        <div class="product-price">RM${item.price}</div>
+      </div>
+    `);
   });
 }
 
-search.addEventListener('input',update);
-
-document.addEventListener('click',e=>{
-  const btn=e.target.closest('.check-btn');
-  if(!btn) return;
-  const {name,price,cond}=btn.dataset;
-  const msg=encodeURIComponent(`Hi FAZGAME, I’d like to check availability for ${name} (RM${price}, ${cond.toUpperCase()}).`);
-  window.open(`https://wa.me/60163691936?text=${msg}`,'_blank');
-});
-
-document.querySelectorAll('.service-chip').forEach(chip=>{
-  chip.addEventListener('click',()=>{
-    const target=document.getElementById(chip.dataset.scroll);
-    if(target) target.scrollIntoView({behavior:'smooth'});
+// Hot Items
+const hotGrid = document.getElementById('hotGrid');
+if (HOT_ITEMS.length === 0) {
+  document.getElementById('hot').style.display = 'none';
+} else {
+  HOT_ITEMS.forEach(item => {
+    hotGrid.insertAdjacentHTML('beforeend', `
+      <div class="hot-card">
+        <span class="fire-badge">HOT</span>
+        <div class="hot-title">${item.name}</div>
+        <div class="hot-desc">${item.desc}</div>
+      </div>
+    `);
   });
-});
-
-update();
+}
 </script>
 </body>
 </html>
