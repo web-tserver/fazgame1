@@ -112,6 +112,29 @@ footer{text-align:center;padding:24px;color:#aaa}
   50%{box-shadow:0 0 22px rgba(255,216,77,.75), inset 0 0 14px rgba(255,216,77,.35)}
   100%{box-shadow:0 0 10px rgba(255,216,77,.35), inset 0 0 6px rgba(255,216,77,.15)}
 }
+
+/* ===== Active Filter Count Animation & Glow (LOCK-SAFE) ===== */
+@keyframes countPop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+  100%{transform:scale(1)}
+}
+
+@keyframes countGlow{
+  0%{box-shadow:0 0 0 rgba(255,216,77,0)}
+  50%{box-shadow:0 0 10px rgba(255,216,77,.75)}
+  100%{box-shadow:0 0 0 rgba(255,216,77,0)}
+}
+
+.filter-btn.active .filter-count{
+  background:#000;
+  color:#ffd84d;
+  font-weight:800;
+  animation:
+    countPop .35s ease,
+    countGlow 1.8s ease-in-out infinite;
+}
+
 </style>
 </head>
 <body>
