@@ -9,7 +9,6 @@ export const STOCK = [
    🎮 PS5 GAMES
 ================================ */
 { n:'Black Myth: Wukong', c:'ps5', type:'game', p:180, cond:'used' },
-{ n:'Marvel Spider-Man 2', c:'ps5', type:'game', p:130, cond:'used' },
 
 // RM100 EACH
 { n:'Ghost of Tsushima (PS5)', c:'ps5', type:'game', p:100, cond:'used' },
@@ -68,4 +67,5 @@ export const STOCK = [
 { n:'Dragon Quest Builders', c:'ps4', type:'game', p:20, cond:'used' }
 
 ];
+
 
