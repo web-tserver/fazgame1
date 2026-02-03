@@ -44,6 +44,7 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-fi
 section{padding:40px 16px}
 .section-title{font-size:20px;font-weight:800}
 
+
 .hot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(min-width:768px){.hot-grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1100px){.hot-grid{grid-template-columns:repeat(4,1fr)}}
@@ -52,12 +53,74 @@ section{padding:40px 16px}
 .hot-desc{font-size:13px;color:var(--muted)}
 .fire-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#ffb300;color:#000}
 
+/* ===== Fast Sales long banner layout ===== */
+#fast-sales .hot-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+/* Keep Hot Items grid unchanged */
+@media(min-width:768px){
+  #hot .hot-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1100px){
+  #hot .hot-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+##fast-sales .hot-card{
+  position:relative;
+  min-height:140px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,216,77,.28),
+    rgba(255,255,255,.06)
+  );
+  border-radius:18px;
+  padding:20px;
+  padding-bottom:26px; /* extra gap from bottom */
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+/* Fast Sales Price */
+.fast-price{
+  margin-top:4px;
+  font-size:16px;
+  font-weight:900;
+  color:#ffd84d;
+  letter-spacing:.3px;
+}
+
 /* Fast Sales LIMITED badge (red only) */
 .fire-badge-limited{
   background:#ff3b3b;
   color:#fff;
 }
 
+/* Fast Sales Condition Badge (NEW / USED) */
+.fast-condition{
+  position:absolute;
+  top:12px;
+  left:12px;
+  font-size:10px;
+  font-weight:800;
+  padding:4px 8px;
+  border-radius:999px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+.fast-new{
+  background:rgba(255,216,77,.9);
+  color:#000;
+}
+
+.fast-used{
+  background:rgba(255,255,255,.18);
+  color:#fff;
+}
 .controls{margin-bottom:14px}
 .search-box{padding:14px;border-radius:14px;border:none;background:rgba(255,255,255,.08);color:#fff;width:100%;max-width:360px}
 .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
@@ -178,10 +241,31 @@ footer{text-align:center;padding:24px;color:#aaa}
 <div class="sticky-cta"><a href="https://wa.me/60163691936" target="_blank" class="btn">Chat on WhatsApp</a></div>
 
 <section id="fast-sales">
-  <h2 class="section-title">Fast Sales</h2>
-  <div class="hot-grid">
-    <div class="hot-card fast-glow"><span class="fire-badge fire-badge-limited">LIMITED</span><div class="hot-title">PS5 Disc Set</div><div class="hot-desc">Limited Stock</div></div>
-    <div class="hot-card fast-glow"><span class="fire-badge fire-badge-limited">LIMITED</span><div class="hot-title">RTX Gaming PC</div><div class="hot-desc">Best Seller</div></div>
+<h2 class="section-title">Fast Sales</h2>
+<div class="fast-sales-subtitle">🔥 While Stock Lasts</div>
+
+<div class="hot-grid">
+  <div class="hot-card fast-glow">
+  <span class="fast-condition fast-new">USED</span>
+  <span class="fire-badge fire-badge-limited">LIMITED</span>
+
+  <div class="hot-title">PS5 Disc Set</div>
+  <div class="fast-price">RM 1800</div>
+  <div class="hot-desc">Limited Stock</div>
+  
+  
+</div>
+
+<div class="hot-card fast-glow">
+  <span class="fast-condition fast-new">USED</span>
+  <span class="fire-badge fire-badge-limited">LIMITED</span>
+
+  <div class="hot-title">Nintendo Switch OLED</div>
+  <div class="fast-price">RM 900</div>
+  <div class="hot-desc">Limited Stock</div>
+</div>
+
+    
   </div>
 </section>
 
@@ -301,6 +385,37 @@ document.querySelectorAll('.service-chip').forEach(chip=>{
 });
 
 update();
+// ===== Auto Hide Fast Sales if Empty =====
+const fastSalesSection = document.getElementById('fast-sales');
+if (fastSalesSection) {
+  const fastCards = fastSalesSection.querySelectorAll('.hot-card');
+  if (fastCards.length === 0) {
+    fastSalesSection.style.display = 'none';
+  }
+}
+// ===== Auto Sort Fast Sales (NEW first, USED second) =====
+const fastSales = document.querySelector('#fast-sales .hot-grid');
+
+if (fastSales) {
+  const cards = Array.from(fastSales.children);
+
+  cards.sort((a, b) => {
+    const aNew = a.querySelector('.fast-new') ? 1 : 0;
+    const bNew = b.querySelector('.fast-new') ? 1 : 0;
+
+    const aUsed = a.querySelector('.fast-used') ? 1 : 0;
+    const bUsed = b.querySelector('.fast-used') ? 1 : 0;
+
+    // NEW first
+    if (aNew !== bNew) return bNew - aNew;
+    // USED second
+    if (aUsed !== bUsed) return aUsed - bUsed;
+
+    return 0;
+  });
+
+  cards.forEach(card => fastSales.appendChild(card));
+}
 </script>
 </body>
 </html>
