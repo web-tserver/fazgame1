@@ -57,7 +57,7 @@ section{
 .hot-desc{font-size:13px;color:var(--muted)}
 .fire-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#ffb300;color:#000}
 
-/* ===== Minimal Payment Icons ===== */
+/* ===== Minimal Payment Methods ===== */
 
 #payment{
   text-align:center;
@@ -67,21 +67,26 @@ section{
   margin-top:30px;
   display:flex;
   justify-content:center;
-  align-items:center;
+  gap:60px;
   flex-wrap:wrap;
-  gap:40px;
 }
 
-.payment-icons img{
-  height:40px;
+.payment-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:600;
+  font-size:14px;
+}
+
+.payment-item img{
+  height:36px;
   object-fit:contain;
-  opacity:.75;
   transition:.3s ease;
 }
 
-.payment-icons img:hover{
-  opacity:1;
-  transform:scale(1.08);
+.payment-item:hover img{
+  transform:scale(1.05);
 }
 
 
@@ -486,11 +491,20 @@ footer{text-align:center;padding:24px;color:#aaa}
   <h2 class="section-title">Payment Methods</h2>
 
   <div class="payment-icons">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/FPX_Logo.png" alt="FPX">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/ShopeePay_logo.png" alt="SPayLater">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Touch_%27n_Go_eWallet_logo.png" alt="Touch n Go eWallet">
+
+    <div class="payment-item">
+      <img src="https://cdn.simpleicons.org/shopee/ee4d2d" alt="SPayLater">
+      <span>SPayLater</span>
+    </div>
+
+    <div class="payment-item">
+      <img src="https://cdn.simpleicons.org/visa/1a1f71" alt="Visa">
+      <span>FPX Online Banking</span>
+    </div>
+
   </div>
 </section>
+
 
 <footer>© 2026 FAZGAME • Faz Service, Faz Gaming</footer>
 
