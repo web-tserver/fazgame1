@@ -41,40 +41,167 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-fi
 .btn{display:block;max-width:360px;margin:auto;padding:14px;border-radius:14px;background:var(--accent);color:#000;font-weight:800;text-align:center;transition:.2s}
 .btn:hover{background:var(--accent-dark)}
 
-section{padding:40px 16px}
+section{
+  padding:60px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+
 .section-title{font-size:20px;font-weight:800}
 
 
 .hot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(min-width:768px){.hot-grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1100px){.hot-grid{grid-template-columns:repeat(4,1fr)}}
-.hot-card{position:relative;height:180px;background:linear-gradient(180deg,rgba(255,216,77,.28),rgba(255,255,255,.06));border-radius:18px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end}
 .hot-title{font-weight:800}
 .hot-desc{font-size:13px;color:var(--muted)}
 .fire-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#ffb300;color:#000}
 
-/* ===== Fast Sales long banner layout ===== */
-#fast-sales .hot-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
+/* ===== Fast Sales Glow (Clean & Working) ===== */
+@keyframes fastGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(255,216,77,.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255,216,77,.8);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(255,216,77,.25);
+  }
 }
 
-/* Keep Hot Items grid unchanged */
-@media(min-width:768px){
-  #hot .hot-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(min-width:1100px){
-  #hot .hot-grid{grid-template-columns:repeat(4,1fr)}
+/* Apply ONLY to Fast Sales cards */
+#fast-sales .hot-card {
+  animation: fastGlow 2.5s ease-in-out infinite;
 }
 
-##fast-sales .hot-card{
+
+.fast-condition{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:2;
+  font-size:10px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.fast-used{
+  background:rgba(255,255,255,.85);
+  color:#000;
+}
+
+.fast-new{
+  background:#ffd84d;
+  color:#000;
+}
+
+.limited-badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:2;
+  background:#ff3b3b;
+  color:#fff;
+  font-size:10px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.hot-card{
   position:relative;
-  min-height:140px;
+  aspect-ratio:1 / 1;
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .25s ease;
+}
+
+.hot-card:hover{
+  transform:translateY(-6px);
+}
+
+.hot-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+.hot-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.1),
+    rgba(0,0,0,.75)
+  );
+}
+
+.hot-card-content{
+  position:absolute;
+  bottom:18px;
+  left:18px;
+  right:18px;
+  z-index:2;
+}
+
+.hot-grid{
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+  justify-content:center;
+}
+
+.fast-condition,
+.preorder-badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-size:10px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* Mobile first */
+.hot-grid{
+  grid-template-columns:repeat(2, minmax(140px, 1fr));
+}
+
+/* Tablet */
+@media(min-width:768px){
+  .hot-grid{
+    grid-template-columns:repeat(3, 220px);
+  }
+}
+
+/* Desktop */
+@media(min-width:1200px){
+  .hot-grid{
+    grid-template-columns:repeat(4, 240px);
+  }
+
+.hot-card{
+  position:relative;
+  aspect-ratio:1 / 1;   /* Always square */
+  border-radius:18px;
+  overflow:hidden;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
   background:linear-gradient(
     180deg,
     rgba(255,216,77,.28),
     rgba(255,255,255,.06)
+  );
+}
+
   );
   border-radius:18px;
   padding:20px;
@@ -167,7 +294,7 @@ footer{text-align:center;padding:24px;color:#aaa}
 
 /* ===== Fast Sales Glow Effect ===== */
 .fast-glow{
-  box-shadow:0 0 18px rgba(255,216,77,.55), inset 0 0 12px rgba(255,216,77,.25);
+  box-shadow:0 0 18px rgba(255,216,77,.25);
   animation:glowPulse 2.2s ease-in-out infinite;
 }
 @keyframes glowPulse{
@@ -241,43 +368,83 @@ footer{text-align:center;padding:24px;color:#aaa}
 <div class="sticky-cta"><a href="https://wa.me/60163691936" target="_blank" class="btn">Chat on WhatsApp</a></div>
 
 <section id="fast-sales">
-<h2 class="section-title">Fast Sales</h2>
-<div class="fast-sales-subtitle">🔥 While Stock Lasts</div>
+  <h2 class="section-title">Fast Sales</h2>
+  <div class="fast-sales-subtitle">🔥 While Stock Lasts</div>
 
-<div class="hot-grid">
-  <div class="hot-card fast-glow">
-  <span class="fast-condition fast-new">USED</span>
-  <span class="fire-badge fire-badge-limited">LIMITED</span>
+  <div class="hot-grid">
 
-  <div class="hot-title">PS5 Disc Set</div>
-  <div class="fast-price">RM 1800</div>
-  <div class="hot-desc">Limited Stock</div>
-  
-  
-</div>
+    <div class="hot-card">
+      <img src="images/ps5.jpg" alt="PS5 Disc Set">
 
-<div class="hot-card fast-glow">
-  <span class="fast-condition fast-new">USED</span>
-  <span class="fire-badge fire-badge-limited">LIMITED</span>
+      <span class="fast-condition fast-used">USED</span>
+      <span class="limited-badge">LIMITED</span>
 
-  <div class="hot-title">Nintendo Switch OLED</div>
-  <div class="fast-price">RM 900</div>
-  <div class="hot-desc">Limited Stock</div>
-</div>
+      <div class="hot-card-content">
+        <div class="hot-title">PS5 Disc Set</div>
+        <div class="hot-desc">RM 1800 • Limited Stock</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <img src="images/switch.jpg" alt="Nintendo Switch OLED">
+
+      <span class="fast-condition fast-used">USED</span>
+      <span class="limited-badge">LIMITED</span>
+
+      <div class="hot-card-content">
+        <div class="hot-title">Nintendo Switch OLED</div>
+        <div class="hot-desc">RM 900 • Limited Stock</div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     
+<section id="hot">
+  <h2 class="section-title">Preorder Builds</h2>
+
+  <div class="hot-grid">
+
+    <div class="hot-card">
+      <img src="images/pc2000.jpg" alt="PC Budget RM2,000">
+      <span class="preorder-badge">PRE-ORDER</span>
+      <div class="hot-card-content">
+        <div class="hot-title">PC Budget RM2,000</div>
+        <div class="hot-desc">Entry Gaming</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <img src="images/pc3000.jpg" alt="PC Budget RM3,000">
+      <span class="preorder-badge">PRE-ORDER</span>
+      <div class="hot-card-content">
+        <div class="hot-title">PC Budget RM3,000</div>
+        <div class="hot-desc">Balanced Build</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <img src="images/pc4000.jpg" alt="PC Budget RM4,000">
+      <span class="preorder-badge">PRE-ORDER</span>
+      <div class="hot-card-content">
+        <div class="hot-title">PC Budget RM4,000</div>
+        <div class="hot-desc">High Performance</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <img src="images/custompc.jpg" alt="Custom PC">
+      <span class="preorder-badge">PRE-ORDER</span>
+      <div class="hot-card-content">
+        <div class="hot-title">Custom PC</div>
+        <div class="hot-desc">Free Setup</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section id="hot">
-  <h2 class="section-title">Hot Items</h2>
-  <div class="hot-grid">
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM2,000</div><div class="hot-desc">Entry Gaming</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM3,000</div><div class="hot-desc">Balanced Build</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">PC Budget RM4,000</div><div class="hot-desc">High Performance</div></div>
-    <div class="hot-card"><span class="fire-badge">HOT</span><div class="hot-title">Custom PC</div><div class="hot-desc">Free Setup</div></div>
-  </div>
-</section>
 
 <section id="stock">
   <h2 class="section-title">Stock Available</h2>
