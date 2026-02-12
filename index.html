@@ -41,6 +41,24 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-fi
 .btn{display:block;max-width:360px;margin:auto;padding:14px;border-radius:14px;background:var(--accent);color:#000;font-weight:800;text-align:center;transition:.2s}
 .btn:hover{background:var(--accent-dark)}
 
+.installment-banner{
+  margin-top:14px;
+  font-size:12.5px;
+  text-align:center;
+  color:rgba(255,216,77,.9);
+  font-weight:600;
+  letter-spacing:.5px;
+}
+.installment-banner{
+  animation:fadeInInstall 1.2s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeInInstall{
+  to{ opacity:1; }
+}
+
+
 .hero-logo{
   font-size:34px;
   font-weight:800;
@@ -563,7 +581,7 @@ footer{text-align:center;padding:24px;color:#aaa}
   </div>
 </section>
 
-    
+   
 <section id="hot">
   <h2 class="section-title">Preorder Builds</h2>
 
@@ -605,8 +623,13 @@ footer{text-align:center;padding:24px;color:#aaa}
       </div>
     </div>
 
+
   </div>
 </section>
+
+<div class="installment-banner">
+  💳 0% Interest Installment Available • SPayLater
+</div>
 
 
 <section id="stock">
