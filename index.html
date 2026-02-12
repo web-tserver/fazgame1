@@ -41,6 +41,33 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-fi
 .btn{display:block;max-width:360px;margin:auto;padding:14px;border-radius:14px;background:var(--accent);color:#000;font-weight:800;text-align:center;transition:.2s}
 .btn:hover{background:var(--accent-dark)}
 
+.hero-logo{
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.hero-logo span{
+  color:var(--accent);
+  animation:logoPulse 1.6s infinite alternate;
+}
+
+@keyframes logoPulse{
+  0%{ text-shadow:0 0 6px rgba(255,216,77,.4); }
+  100%{ text-shadow:0 0 20px rgba(255,216,77,.95); }
+}
+
+
+.counter-glow{
+  animation:counterPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes counterPulse{
+  0%{ text-shadow:0 0 4px rgba(255,216,77,.4); }
+  100%{ text-shadow:0 0 16px rgba(255,216,77,.9); }
+}
+
+
 section{
   padding:60px 20px;
   max-width:1200px;
@@ -464,7 +491,10 @@ footer{text-align:center;padding:24px;color:#aaa}
   <div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420')"></div>
   <div class="banner-content">
     <div class="banner-card">
-      <h1>FAZGAME</h1>
+      <h1 class="hero-logo">
+  FAZ<span>GAME</span>
+</h1>
+
       <p class="tagline"><strong>Faz</strong> Service, <strong>Faz</strong> Gaming</p>
       <div class="banner-services" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,.85)">
         <span class="service-chip primary" data-scroll="hot">Custom PC Build</span>
