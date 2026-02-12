@@ -333,28 +333,26 @@ section{
 
 .hot-card{
   position:relative;
-  aspect-ratio:1 / 1;   /* Always square */
-  border-radius:18px;
+  width:100%;
+  aspect-ratio:1 / 1;
+  border-radius:20px;
   overflow:hidden;
-  padding:14px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  background:linear-gradient(
-    180deg,
-    rgba(255,216,77,.28),
-    rgba(255,255,255,.06)
-  );
+  cursor:pointer;
+  transition:transform .25s ease;
 }
 
-  );
-  border-radius:18px;
-  padding:20px;
-  padding-bottom:26px; /* extra gap from bottom */
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
+.hot-card:hover{
+  transform:translateY(-6px);
 }
+
+.hot-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
 
 /* Fast Sales Price */
 .fast-price{
