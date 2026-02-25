@@ -71,10 +71,7 @@ export const STOCK = [
 { n:'Gaming Mouse RGB 16000 DPI', c:'pc', type:'pc', p:150, cond:'new' },
 { n:'Mid Tower Gaming Case RGB', c:'pc', type:'pc', p:300, cond:'new' }
 
-   /* ===============================
-   🎮 PS4 CONSOLE & GAMES
-================================ */
-
+   
 // 🎮 PS4 Consoles
 { n:'PlayStation 4 Slim 500GB (Full Set)', c:'ps4', type:'console', p:850, cond:'used' },
 { n:'PlayStation 4 Slim 1TB (Full Set)', c:'ps4', type:'console', p:950, cond:'used' },
@@ -94,6 +91,6 @@ export const STOCK = [
 { n:'Need for Speed Heat', c:'ps4', type:'game', p:60, cond:'used' },
 { n:'FIFA 23 (PS4)', c:'ps4', type:'game', p:50, cond:'used' },
 { n:'EA FC 24 (PS4)', c:'ps4', type:'game', p:70, cond:'used' }
-
 ];
+
 
