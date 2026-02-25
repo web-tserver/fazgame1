@@ -322,9 +322,9 @@ footer{text-align:center;padding:40px;color:#aaa;font-size:13px}
 <footer>© 2026 FAZGAME • Faz Service, Faz Gaming</footer>
 
 <script src="stock.js"></script>
+
 <script>
 let products = window.STOCK || [];
-</script>
 
 const icons = {
   console:'https://api.iconify.design/mdi/console.svg',
@@ -385,6 +385,7 @@ function renderProducts() {
 
 search.oninput = renderProducts;
 renderProducts();
+</script>
 
 // Fast Sales Sort
 const fastGrid = document.querySelector('#fast-sales .hot-grid');
