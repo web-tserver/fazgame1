@@ -444,14 +444,21 @@ function startCounters() {
   document.querySelectorAll(".stat h2").forEach(counter => {
     const target = parseInt(counter.dataset.target);
     let current = 0;
+    
+    // INCREASE THIS DIVISOR TO SLOW DOWN (e.g., 100 or 150)
+    // Higher number = Slower animation
+    const speedDivisor = 120; 
+
     const update = () => {
-      current += target / 30;
+      current += target / speedDivisor;
+      
       if(current < target) {
         counter.innerText = Math.ceil(current);
         requestAnimationFrame(update);
       } else {
         counter.innerText = target + "+";
-        counter.classList.add("counter-glow");
+        // Optional: Keep your glow effect if you have the class defined
+        counter.classList.add("counter-glow"); 
       }
     };
     update();
