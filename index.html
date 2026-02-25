@@ -10,7 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
+:root
+{
   --bg:#000;
   --card:rgba(255,255,255,.08);
   --text:#fff;
@@ -19,7 +20,7 @@
   --accent-dark:#e6c43d;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 a{text-decoration:none;color:inherit}
 
 header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);padding:10px 16px}
@@ -34,388 +35,137 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-fi
 .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.9))}
 .banner-content{position:relative;z-index:2;padding:72px 16px}
 .banner-card{max-width:560px;background:rgba(8,8,12,.9);border-radius:20px;padding:26px}
-.banner-card h1{font-size:32px;font-weight:800}
+.hero-logo{font-size:32px;font-weight:800;letter-spacing:2px;color:#fff}
+.hero-logo span{color:var(--accent)}
 .tagline{margin-top:6px;font-weight:600;color:var(--accent)}
 
 .sticky-cta{position:sticky;top:62px;z-index:900;background:rgba(0,0,0,.92);padding:12px 16px}
 .btn{display:block;max-width:360px;margin:auto;padding:14px;border-radius:14px;background:var(--accent);color:#000;font-weight:800;text-align:center;transition:.2s}
 .btn:hover{background:var(--accent-dark)}
 
-.installment-banner{
-  margin-top:14px;
-  font-size:12.5px;
-  text-align:center;
-  color:rgba(255,216,77,.9);
-  font-weight:600;
-  letter-spacing:.5px;
-}
-.installment-banner{
-  animation:fadeInInstall 1.2s ease forwards;
-  opacity:0;
-}
+/* Lightbox Modal */
+#imageModal{position:fixed;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;z-index:10000;cursor:zoom-out}
+#imageModal.show{display:flex}
+#modalImg{max-width:95%;max-height:90vh;border-radius:16px;transform:scale(.9);transition:transform .3s ease;box-shadow:0 0 30px rgba(0,0,0,0.5)}
+#imageModal.show #modalImg{transform:scale(1)}
 
-@keyframes fadeInInstall{
-  to{ opacity:1; }
-}
+.installment-banner{margin-top:14px;font-size:12.5px;text-align:center;color:rgba(255,216,77,.9);font-weight:600;letter-spacing:.5px;animation:fadeInInstall 1.2s ease forwards;opacity:0}
+@keyframes fadeInInstall{to{opacity:1}}
 
+section{padding:60px 20px;max-width:1200px;margin:auto}
+.section-title{font-size:20px;font-weight:800;margin-bottom:10px}
 
-.hero-logo{
-  font-size:34px;
-  font-weight:800;
-  letter-spacing:2px;
-  color:#fff;
-}
+.hot-grid{display:grid;gap:10px;margin-top:10px;justify-content:center;grid-template-columns:repeat(2, minmax(140px, 1fr))}
+@media(min-width:768px){.hot-grid{grid-template-columns:repeat(3, 220px)}}
+@media(min-width:1200px){.hot-grid{grid-template-columns:repeat(4, 240px)}}
 
-.hero-logo span{
-  color:var(--accent); /* yellow */
-}
-
-.hero-logo{
-  font-size:32px;
-  font-weight:800;
-  letter-spacing:2px;
-}
-
-
-.counter-glow{
-  animation:counterPulse 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes counterPulse{
-  0%{ text-shadow:0 0 4px rgba(255,216,77,.4); }
-  100%{ text-shadow:0 0 16px rgba(255,216,77,.9); }
-}
-
-
-section{
-  padding:60px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.section-title{font-size:20px;font-weight:800}
-
-
-.hot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-@media(min-width:768px){.hot-grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1100px){.hot-grid{grid-template-columns:repeat(4,1fr)}}
+.hot-card{position:relative;width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .25s ease;background:#111}
+.hot-card:hover{transform:translateY(-6px)}
+.hot-card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hot-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(0,0,0,.75))}
+.hot-card-content{position:absolute;bottom:18px;left:18px;right:18px;z-index:2}
 .hot-title{font-weight:800}
 .hot-desc{font-size:13px;color:var(--muted)}
-.fire-badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#ffb300;color:#000}
 
-.hero-stats{
-  display:flex;
-  gap:28px;
-  margin:18px 0 22px;
-  flex-wrap:wrap;
+.fast-condition, .preorder-badge, .limited-badge{position:absolute;z-index:2;font-size:10px;font-weight:800;padding:6px 10px;border-radius:999px;top:14px}
+.fast-condition{left:14px}
+.fast-new{background:var(--accent);color:#000}
+.fast-used{background:rgba(255,255,255,.85);color:#000}
+.limited-badge{right:14px;background:#ff3b3b;color:#fff}
+.preorder-badge{right:14px;background:var(--accent);color:#000}
+
+#fast-sales .hot-card{animation:fastGlow 2.5s ease-in-out infinite}
+@keyframes fastGlow{0%,100%{box-shadow:0 0 8px rgba(255,216,77,.25)}50%{box-shadow:0 0 28px rgba(255,216,77,.8)}}
+
+.hero-stats{display:flex;gap:28px;margin:18px 0 22px;flex-wrap:wrap}
+.stat h2{font-size:20px;font-weight:800;color:var(--accent);line-height:1}
+.stat p{font-size:11px;color:rgba(255,255,255,.7);margin-top:4px}
+.counter-glow{animation:counterPulse 1.5s ease-in-out infinite alternate}
+@keyframes counterPulse{0%{text-shadow:0 0 4px rgba(255,216,77,.4)}100%{text-shadow:0 0 16px rgba(255,216,77,.9)}}
+.controls {
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: flex-start; /* Aligns search box to left */
 }
 
-.stat h2{
-  font-size:20px;
-  font-weight:800;
-  color:var(--accent);
-  line-height:1;
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: flex-start; /* Aligns filter buttons to left */
+}
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 72px 16px;
+  max-width: 1200px; /* Match the header width */
+  margin: auto;      /* Centers the container, but content inside stays left */
+  display: flex;
+  justify-content: flex-start;
 }
 
-.stat p{
-  font-size:11px;
-  color:rgba(255,255,255,.7);
-  margin-top:4px;
+.banner-card {
+  max-width: 560px;
+  background: rgba(8, 8, 12, 0.9);
+  border-radius: 20px;
+  padding: 26px;
+  margin-left: 0; /* Ensures it stays to the left */
+}
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Changed from space-between */
+  gap: 30px; /* Adds space between the logo and icons */
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-align: left; /* Explicitly align section titles to the left */
+}
+/* Ensure the container clips the zoomed image */
+.hot-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  overflow: hidden; /* Critical: keeps the zoom inside the card */
+  cursor: pointer;
+  background: #111;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-
-/* ===== LOADING SCREEN ONLY ===== */
-
-#preloader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity .6s ease, visibility .6s ease;
+/* Base style for the image with transition */
+.hot-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease; /* Smooth zoom duration */
 }
 
-#preloader.hide{
-  opacity:0;
-  visibility:hidden;
+/* Trigger the zoom on hover */
+.hot-card:hover img {
+  transform: scale(1.15); /* Zoom in by 15% */
 }
 
-.loader-inner{
-  text-align:center;
-  width:240px;
+/* Keep your existing card lift effect if desired */
+.hot-card:hover {
+  transform: translateY(-6px);
+  z-index: 5;
 }
 
-.loader-logo{
-  font-size:26px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin-bottom:18px;
-}
-
-.loader-logo span{
-  color:var(--accent);
-  animation:logoPulse 1.6s infinite alternate;
-}
-
-@keyframes logoPulse{
-  0%{text-shadow:0 0 6px rgba(255,216,77,.4)}
-  100%{text-shadow:0 0 18px rgba(255,216,77,.9)}
-}
-
-.loader-bar-wrap{
-  width:100%;
-  height:4px;
-  background:rgba(255,255,255,.1);
-  border-radius:999px;
-  overflow:hidden;
-}
-
-.loader-bar{
-  width:0%;
-  height:100%;
-  background:var(--accent);
-  box-shadow:0 0 12px var(--accent);
-}
-
-
-/* ===== Minimal Payment Methods ===== */
-
-#payment{
-  text-align:center;
-}
-
-.payment-icons{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:60px;
-  flex-wrap:wrap;
-}
-
-.payment-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:600;
-  font-size:14px;
-}
-
-.payment-item img{
-  height:36px;
-  object-fit:contain;
-  transition:.3s ease;
-}
-
-.payment-item:hover img{
-  transform:scale(1.05);
-}
-
-
-/* ===== Fast Sales Glow (Clean & Working) ===== */
-@keyframes fastGlow {
-  0% {
-    box-shadow: 0 0 8px rgba(255,216,77,.25);
-  }
-  50% {
-    box-shadow: 0 0 28px rgba(255,216,77,.8);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(255,216,77,.25);
-  }
-}
-
-/* Apply ONLY to Fast Sales cards */
-#fast-sales .hot-card {
-  animation: fastGlow 2.5s ease-in-out infinite;
-}
-
-
-.fast-condition{
-  position:absolute;
-  top:14px;
-  left:14px;
-  z-index:2;
-  font-size:10px;
-  font-weight:800;
-  padding:6px 10px;
-  border-radius:999px;
-}
-
-.fast-used{
-  background:rgba(255,255,255,.85);
-  color:#000;
-}
-
-.fast-new{
-  background:#ffd84d;
-  color:#000;
-}
-
-.limited-badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  z-index:2;
-  background:#ff3b3b;
-  color:#fff;
-  font-size:10px;
-  font-weight:800;
-  padding:6px 10px;
-  border-radius:999px;
-}
-
-.hot-card{
-  position:relative;
-  aspect-ratio:1 / 1;
-  border-radius:20px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform .25s ease;
-}
-
-.hot-card:hover{
-  transform:translateY(-6px);
-}
-
-}
-
-.hot-card:hover{
-  transform:translateY(-6px);
-}
-
-.hot-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;        /* THIS makes it fill */
-  object-position:center;  /* keeps crop centered */
-  display:block;
-}
-
-.hot-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.1),
-    rgba(0,0,0,.75)
-  );
-}
-
-.hot-card-content{
-  position:absolute;
-  bottom:18px;
-  left:18px;
-  right:18px;
-  z-index:2;
-}
-
-.hot-grid{
-  display:grid;
-  gap:10px;
-  margin-top:10px;
-  justify-content:center;
-}
-
-.fast-condition,
-.preorder-badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  font-size:10px;
-  font-weight:800;
-  padding:6px 10px;
-  border-radius:999px;
-}
-
-/* Mobile first */
-.hot-grid{
-  grid-template-columns:repeat(2, minmax(140px, 1fr));
-}
-
-/* Tablet */
-@media(min-width:768px){
-  .hot-grid{
-    grid-template-columns:repeat(3, 220px);
-  }
-}
-
-/* Desktop */
-@media(min-width:1200px){
-  .hot-grid{
-    grid-template-columns:repeat(4, 240px);
-  }
-}
-
-.hot-card{
-  position:relative;
-  width:100%;
-  aspect-ratio:1 / 1;
-  border-radius:20px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform .25s ease;
-}
-
-.hot-card:hover{
-  transform:translateY(-6px);
-}
-
-.hot-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-}
-
-
-/* Fast Sales Price */
-.fast-price{
-  margin-top:4px;
-  font-size:16px;
-  font-weight:900;
-  color:#ffd84d;
-  letter-spacing:.3px;
-}
-
-/* Fast Sales LIMITED badge (red only) */
-.fire-badge-limited{
-  background:#ff3b3b;
-  color:#fff;
-}
-
-/* Fast Sales Condition Badge (NEW / USED) */
-.fast-condition{
-  position:absolute;
-  top:12px;
-  left:12px;
-  font-size:10px;
-  font-weight:800;
-  padding:4px 8px;
-  border-radius:999px;
-  text-transform:uppercase;
-  letter-spacing:.4px;
-}
-
-.fast-new{
-  background:rgba(255,216,77,.9);
-  color:#000;
-}
-
-.fast-used{
-  background:rgba(255,255,255,.18);
-  color:#fff;
-}
+/* Stock Grid */
 .controls{margin-bottom:14px}
 .search-box{padding:14px;border-radius:14px;border:none;background:rgba(255,255,255,.08);color:#fff;width:100%;max-width:360px}
 .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.filter-btn{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:12px;cursor:pointer}
+.filter-btn{padding:8px 14px;border-radius:9999px;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:12px;cursor:pointer}
 .filter-btn.active{background:var(--accent);color:#000}
-.filter-count{margin-left:6px;background:#000;padding:2px 6px;border-radius:999px;font-size:10px}
+.filter-count{margin-left:6px;background:#000;color:#fff;padding:2px 6px;border-radius:999px;font-size:10px}
 
 .product-grid{display:grid;gap:14px}
 @media(min-width:768px){.product-grid{grid-template-columns:repeat(2,1fr)}}
@@ -423,73 +173,53 @@ section{
 .product-card{background:rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;grid-template-columns:72px 1fr;gap:12px;position:relative}
 .product-icon{width:72px;height:72px;border-radius:12px;background:#111;display:flex;align-items:center;justify-content:center}
 .product-icon img{width:34px;filter:invert(1)}
-.product-price{font-weight:800;margin-top:6px}
-.product-actions{margin-top:8px}
-.check-btn{appearance:none;border:none;cursor:pointer;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;background:var(--accent);color:#000}
-.check-btn:hover{background:var(--accent-dark)}
+.product-price{font-weight:800;margin-top:6px;color:var(--accent)}
+.check-btn{border:none;cursor:pointer;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:800;background:var(--accent);color:#000;margin-top:8px}
 
 .type-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
 .type-game{background:#3cff7f;color:#000}
 .type-console{background:#ffd84d;color:#000}
-.type-pc{background:#4dd2ff;color:#000}
-.type-accessory{background:#ff7a7a;color:#000}
-
 .condition-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:999px;text-transform:uppercase}
 .condition-new{background:rgba(255,216,77,.45)}
 .condition-used{background:rgba(255,255,255,.12)}
 
-.service-chip{background:rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;cursor:pointer;transition:.2s}
-.service-chip:hover{background:rgba(255,216,77,.25)}
-.service-chip.primary{border:1px solid rgba(255,216,77,.6);color:#ffd84d}
+.service-chip{background:rgba(255,255,255,.08);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px}
+.service-chip.primary{border:1px solid var(--accent);color:var(--accent)}
 
-.banner-services,.banner-social{opacity:0;transform:translateY(8px);animation:fadeUp .6s ease forwards}
-.banner-social{animation-delay:.15s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-
-.social-wrap{align-items:center}
-.social-item{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,.08);transition:background .2s ease, transform .2s ease}
-.social-item img{width:20px;filter:invert(1);opacity:.9;transition:transform .2s ease}
+.social-item{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,.08);transition:.2s}
+.social-item img{width:20px;filter:invert(1)}
 .social-item:hover{background:rgba(255,216,77,.25);transform:translateY(-2px)}
-.social-item:hover img{transform:scale(1.1)}
 
-footer{text-align:center;padding:24px;color:#aaa}
 
-/* ===== Fast Sales Glow Effect ===== */
-.fast-glow{
-  box-shadow:0 0 18px rgba(255,216,77,.25);
-  animation:glowPulse 2.2s ease-in-out infinite;
-}
-@keyframes glowPulse{
-  0%{box-shadow:0 0 10px rgba(255,216,77,.35), inset 0 0 6px rgba(255,216,77,.15)}
-  50%{box-shadow:0 0 22px rgba(255,216,77,.75), inset 0 0 14px rgba(255,216,77,.35)}
-  100%{box-shadow:0 0 10px rgba(255,216,77,.35), inset 0 0 6px rgba(255,216,77,.15)}
-}
+/* Payment Icons */
+.payment-icons{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:20px}
+.payment-item{display:flex;align-items:center;gap:10px;font-size:14px;opacity:0.8}
+.payment-item img{height:25px;filter:invert(1)}
 
-/* ===== Active Filter Count Animation & Glow (LOCK-SAFE) ===== */
-@keyframes countPop{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.25)}
-  100%{transform:scale(1)}
-}
+/* Preloader */
+#preloader{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s ease}
+#preloader.hide{opacity:0;pointer-events:none}
+.loader-inner{text-align:center;width:240px}
+.loader-logo{font-size:26px;font-weight:800;margin-bottom:18px}
+.loader-logo span{color:var(--accent)}
+.loader-bar-wrap{width:100%;height:4px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}
+.loader-bar{width:0%;height:100%;background:var(--accent);transition:width 0.1s}
 
-@keyframes countGlow{
-  0%{box-shadow:0 0 0 rgba(255,216,77,0)}
-  50%{box-shadow:0 0 10px rgba(255,216,77,.75)}
-  100%{box-shadow:0 0 0 rgba(255,216,77,0)}
-}
-
-.filter-btn.active .filter-count{
-  background:#000;
-  color:#ffd84d;
-  font-weight:800;
-  animation:
-    countPop .35s ease,
-    countGlow 1.8s ease-in-out infinite;
-}
-
+footer{text-align:center;padding:40px;color:#aaa;font-size:13px}
 </style>
 </head>
 <body>
+
+<div id="preloader">
+  <div class="loader-inner">
+    <div class="loader-logo">FAZ<span>GAME</span></div>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  </div>
+</div>
+
+<div id="imageModal">
+  <img id="modalImg" src="" alt="Preview">
+</div>
 
 <header>
   <div class="header-inner">
@@ -508,39 +238,28 @@ footer{text-align:center;padding:24px;color:#aaa}
   <div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420')"></div>
   <div class="banner-content">
     <div class="banner-card">
-      <h1 class="hero-logo">
-  FAZ<span>GAME</span>
-</h1>
-
+      <h1 class="hero-logo">FAZ<span>GAME</span></h1>
       <p class="tagline"><strong>Faz</strong> Service, <strong>Faz</strong> Gaming</p>
-      <div class="banner-services" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,.85)">
+      
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
         <span class="service-chip primary" data-scroll="hot">Custom PC Build</span>
         <span class="service-chip" data-scroll="hot">PC Parts & Upgrade</span>
         <span class="service-chip" data-scroll="stock">Console & Games</span>
         <span class="service-chip" data-scroll="stock">Repair & Setup</span>
       </div>
-	  <div class="hero-stats">
-  <div class="stat">
-    <h2 data-target="50">0</h2>
-    <p>Custom Builds</p>
-  </div>
 
-  <div class="stat">
-    <h2 data-target="500">0</h2>
-    <p>Happy Customers</p>
-  </div>
+      <div class="hero-stats">
+        <div class="stat"><h2 data-target="50">0</h2><p>Custom Builds</p></div>
+        <div class="stat"><h2 data-target="500">0</h2><p>Happy Customers</p></div>
+        <div class="stat"><h2 data-target="1">0</h2><p>Years Warranty</p></div>
+      </div>
 
-  <div class="stat">
-    <h2 data-target="1">0</h2>
-    <p>Years Warranty</p>
-  </div>
-</div>
-      <div class="banner-social social-wrap" style="margin-top:14px;display:flex;gap:18px">
-        <a class="social-item" href="https://www.tiktok.com/@syazeone?_r=1&_t=ZS-93ajAdKxDUL" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/tiktok.svg"></a>
-        <a class="social-item" href="https://wa.me/60163691936" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/whatsapp.svg"></a>
-        <a class="social-item" href="https://www.instagram.com/fazgame_empire/" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/instagram.svg"></a>
-        <a class="social-item" href="https://www.facebook.com/share/1DHZdLi62G/" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/facebook.svg"></a>
-        <a class="social-item" href="https://t.me/fazgameofficial" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/telegram.svg"></a>
+      <div style="margin-top:14px;display:flex;gap:18px">
+        <a class="social-item" href="https://www.tiktok.com/@syazeone" target="_blank"><img src="https://api.iconify.design/simple-icons/tiktok.svg"></a>
+        <a class="social-item" href="https://wa.me/60163691936" target="_blank"><img src="https://api.iconify.design/simple-icons/whatsapp.svg"></a>
+        <a class="social-item" href="https://www.instagram.com/fazgame_empire/" target="_blank"><img src="https://api.iconify.design/simple-icons/instagram.svg"></a>
+        <a class="social-item" href="https://www.facebook.com/share/1DHZdLi62G/" target="_blank"><img src="https://api.iconify.design/simple-icons/facebook.svg"></a>
+        <a class="social-item" href="https://t.me/fazgameofficial" target="_blank"><img src="https://api.iconify.design/simple-icons/telegram.svg"></a>
       </div>
     </div>
   </div>
@@ -550,87 +269,40 @@ footer{text-align:center;padding:24px;color:#aaa}
 
 <section id="fast-sales">
   <h2 class="section-title">Fast Sales</h2>
-  <div class="fast-sales-subtitle">🔥 While Stock Lasts</div>
-
+  <div style="font-size:13px; color:var(--accent); margin-bottom:10px;">🔥 While Stock Lasts</div>
   <div class="hot-grid">
-
     <div class="hot-card">
-      <img src="images/ps5.jpg" alt="PS5 Disc Set">
-
+      <img src="images/ps5.jpg">
       <span class="fast-condition fast-used">USED</span>
       <span class="limited-badge">LIMITED</span>
-
       <div class="hot-card-content">
         <div class="hot-title">PS5 Disc Set</div>
         <div class="hot-desc">RM 1800 • Limited Stock</div>
       </div>
     </div>
-
     <div class="hot-card">
-      <img src="images/switch.jpg" alt="Nintendo Switch OLED">
-
+      <img src="images/switch.jpg">
       <span class="fast-condition fast-used">USED</span>
       <span class="limited-badge">LIMITED</span>
-
       <div class="hot-card-content">
         <div class="hot-title">Nintendo Switch OLED</div>
         <div class="hot-desc">RM 900 • Limited Stock</div>
       </div>
     </div>
-
   </div>
 </section>
 
-   
 <section id="hot">
   <h2 class="section-title">Preorder Builds</h2>
-
   <div class="hot-grid">
-
-    <div class="hot-card">
-      <img src="images/pc2000.jpg" alt="PC Budget RM2,000">
-      <span class="preorder-badge">PRE-ORDER</span>
-      <div class="hot-card-content">
-        <div class="hot-title">PC Budget RM2,000</div>
-        <div class="hot-desc">Entry Gaming</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <img src="images/pc3000.jpg" alt="PC Budget RM3,000">
-      <span class="preorder-badge">PRE-ORDER</span>
-      <div class="hot-card-content">
-        <div class="hot-title">PC Budget RM3,000</div>
-        <div class="hot-desc">Balanced Build</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <img src="images/pc4000.jpg" alt="PC Budget RM4,000">
-      <span class="preorder-badge">PRE-ORDER</span>
-      <div class="hot-card-content">
-        <div class="hot-title">PC Budget RM4,000</div>
-        <div class="hot-desc">High Performance</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <img src="images/custompc.jpg" alt="Custom PC">
-      <span class="preorder-badge">PRE-ORDER</span>
-      <div class="hot-card-content">
-        <div class="hot-title">Custom PC</div>
-        <div class="hot-desc">Free Setup</div>
-      </div>
-    </div>
-
-
+    <div class="hot-card"><img src="images/pc2000.jpg"><span class="preorder-badge">PRE-ORDER</span><div class="hot-card-content"><div class="hot-title">PC Budget RM2,000</div><div class="hot-desc">Entry Gaming</div></div></div>
+    <div class="hot-card"><img src="images/pc3000.jpg"><span class="preorder-badge">PRE-ORDER</span><div class="hot-card-content"><div class="hot-title">PC Budget RM3,000</div><div class="hot-desc">Balanced Build</div></div></div>
+    <div class="hot-card"><img src="images/pc4000.jpg"><span class="preorder-badge">PRE-ORDER</span><div class="hot-card-content"><div class="hot-title">PC Budget RM4,000</div><div class="hot-desc">High Performance</div></div></div>
+    <div class="hot-card"><img src="images/custompc.jpg"><span class="preorder-badge">PRE-ORDER</span><div class="hot-card-content"><div class="hot-title">Custom PC</div><div class="hot-desc">Free Setup</div></div></div>
   </div>
 </section>
 
-<div class="installment-banner">
-  💳 0% Interest Installment Available • SPayLater
-</div>
-
+<div class="installment-banner">💳 0% Interest Installment Available • SPayLater</div>
 
 <section id="stock">
   <h2 class="section-title">Stock Available</h2>
@@ -639,25 +311,21 @@ footer{text-align:center;padding:24px;color:#aaa}
   <div class="product-grid" id="grid"></div>
 </section>
 
-
 <section id="payment">
-  <h2 class="section-title">Payment Methods</h2>
+  <h2 class="section-title" style="text-align:center">Payment Methods</h2>
 
   <div class="payment-icons">
-
     <div class="payment-item">
       <img src="https://cdn.simpleicons.org/shopee/ee4d2d" alt="SPayLater">
-      <span>SPayLater</span>
+      <span class="shopee-text">SPayLater Available</span>
     </div>
 
     <div class="payment-item">
       <img src="https://cdn.simpleicons.org/visa/1a1f71" alt="Visa">
       <span>FPX Online Banking</span>
     </div>
-
   </div>
 </section>
-
 
 <footer>© 2026 FAZGAME • Faz Service, Faz Gaming</footer>
 
@@ -667,202 +335,153 @@ try {
   const module = await import('./stock.js');
   products = module.STOCK || [];
 } catch (e) {
-  products = [];
+  console.warn("Stock data not found.");
 }
 
-const slides=document.querySelectorAll('.banner-slide');
-let i=0;
-setInterval(()=>{
-  slides[i].classList.remove('active');
-  i=(i+1)%slides.length;
-  slides[i].classList.add('active');
-},4000);
-
-const icons={
- console:'https://api.iconify.design/mdi/console.svg',
- ps5:'https://api.iconify.design/simple-icons/playstation.svg',
- ps4:'https://api.iconify.design/simple-icons/playstation.svg',
- xbox:'https://api.iconify.design/simple-icons/xbox.svg',
- switch:'https://api.iconify.design/simple-icons/nintendoswitch.svg',
- pc:'https://api.iconify.design/mdi/desktop-classic.svg',
- other:'https://api.iconify.design/mdi/gamepad-variant.svg'
+const icons = {
+  console:'https://api.iconify.design/mdi/console.svg',
+  ps5:'https://api.iconify.design/simple-icons/playstation.svg',
+  ps4:'https://api.iconify.design/simple-icons/playstation.svg',
+  xbox:'https://api.iconify.design/simple-icons/xbox.svg',
+  switch:'https://api.iconify.design/simple-icons/nintendoswitch.svg',
+  pc:'https://api.iconify.design/mdi/desktop-classic.svg',
+  other:'https://api.iconify.design/mdi/gamepad-variant.svg'
 };
 
 const categories=['all','console','ps5','ps4','xbox','switch','pc','other'];
-let active='all';
-const filters=document.getElementById('filters');
-const grid=document.getElementById('grid');
-const search=document.getElementById('search');
+let activeCat = 'all';
 
-categories.forEach(cat=>{
-  const b=document.createElement('button');
-  b.className='filter-btn'+(cat==='all'?' active':'');
-  b.dataset.filter=cat;
-  b.innerHTML=`${cat.toUpperCase()} <span class="filter-count" id="count-${cat}"></span>`;
-  b.addEventListener('click',()=>{
-    active=cat;
-    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x.dataset.filter===cat));
-    update();
-  });
-  filters.appendChild(b);
+const filters = document.getElementById('filters');
+const grid = document.getElementById('grid');
+const search = document.getElementById('search');
+
+categories.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (cat === 'all' ? ' active' : '');
+  btn.innerHTML = `${cat.toUpperCase()} <span class="filter-count" id="count-${cat}">0</span>`;
+  btn.onclick = () => {
+    activeCat = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts();
+  };
+  filters.appendChild(btn);
 });
 
-function update(){
-  if(products.length===0){
-    grid.innerHTML='<div style="padding:20px;border-radius:12px;background:rgba(255,255,255,.06);text-align:center;color:#ffd84d;font-weight:700">No stock available at the moment</div>';
-    categories.forEach(c=>{
-      const el=document.getElementById('count-'+c);
-      if(el) el.textContent='0';
-    });
-    return;
-  }
-  const q=search.value.toLowerCase();
-  const list=products.filter(p=>(active==='all'||p.c===active)&&p.n.toLowerCase().includes(q));
-  grid.innerHTML='';
-  list.forEach(p=>{
-    grid.insertAdjacentHTML('beforeend',`
+function renderProducts() {
+  const q = search.value.toLowerCase();
+  const filtered = products.filter(p => (activeCat === 'all' || p.c === activeCat) && p.n.toLowerCase().includes(q));
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--accent)">No items found.</div>`;
+  } else {
+    grid.innerHTML = filtered.map(p => `
       <div class="product-card">
         <span class="condition-badge condition-${p.cond}">${p.cond}</span>
-        <span class="type-badge type-${p.type}">${p.type.toUpperCase()}</span>
-        <div class="product-icon"><img src="${icons[p.c]}"></div>
+        <span class="type-badge type-${p.type}">${p.type}</span>
+        <div class="product-icon"><img src="${icons[p.c] || icons.other}"></div>
         <div>
-          ${p.n}
+          <div style="font-weight:700">${p.n}</div>
           <div class="product-price">RM${p.p}</div>
-          <div class="product-actions">
-            <button class="check-btn" data-name="${p.n}" data-price="${p.p}" data-cond="${p.cond}">Check availability</button>
-          </div>
+          <button class="check-btn" onclick="window.open('https://wa.me/60163691936?text=Inquiry: ${encodeURIComponent(p.n)}')">Check Availability</button>
         </div>
-      </div>`);
-  });
-  categories.forEach(c=>{
-    const el=document.getElementById('count-'+c);
-    if(el) el.textContent=c==='all'?products.length:products.filter(p=>p.c===c).length;
-  });
-}
-
-search.addEventListener('input',update);
-
-document.addEventListener('click',e=>{
-  const btn=e.target.closest('.check-btn');
-  if(!btn) return;
-  const {name,price,cond}=btn.dataset;
-  const msg=encodeURIComponent(`Hi FAZGAME, I’d like to check availability for ${name} (RM${price}, ${cond.toUpperCase()}).`);
-  window.open(`https://wa.me/60163691936?text=${msg}`,'_blank');
-});
-
-document.querySelectorAll('.service-chip').forEach(chip=>{
-  chip.addEventListener('click',()=>{
-    const target=document.getElementById(chip.dataset.scroll);
-    if(target) target.scrollIntoView({behavior:'smooth'});
-  });
-});
-
-update();
-// ===== Auto Hide Fast Sales if Empty =====
-const fastSalesSection = document.getElementById('fast-sales');
-if (fastSalesSection) {
-  const fastCards = fastSalesSection.querySelectorAll('.hot-card');
-  if (fastCards.length === 0) {
-    fastSalesSection.style.display = 'none';
+      </div>
+    `).join('');
   }
-}
-// ===== Auto Sort Fast Sales (NEW first, USED second) =====
-const fastSales = document.querySelector('#fast-sales .hot-grid');
 
-if (fastSales) {
-  const cards = Array.from(fastSales.children);
-
-  cards.sort((a, b) => {
-    const aNew = a.querySelector('.fast-new') ? 1 : 0;
-    const bNew = b.querySelector('.fast-new') ? 1 : 0;
-
-    const aUsed = a.querySelector('.fast-used') ? 1 : 0;
-    const bUsed = b.querySelector('.fast-used') ? 1 : 0;
-
-    // NEW first
-    if (aNew !== bNew) return bNew - aNew;
-    // USED second
-    if (aUsed !== bUsed) return aUsed - bUsed;
-
-    return 0;
+  categories.forEach(c => {
+    const el = document.getElementById('count-' + c);
+    if(el) el.textContent = c === 'all' ? products.length : products.filter(p => p.c === c).length;
   });
+}
 
-  cards.forEach(card => fastSales.appendChild(card));
+search.oninput = renderProducts;
+renderProducts();
+
+// Fast Sales Sort
+const fastGrid = document.querySelector('#fast-sales .hot-grid');
+if(fastGrid) {
+  const cards = Array.from(fastGrid.children);
+  cards.sort((a,b) => (b.querySelector('.fast-new')?1:0) - (a.querySelector('.fast-new')?1:0));
+  cards.forEach(c => fastGrid.appendChild(c));
 }
 </script>
-<!-- ===== LOADING SCREEN ===== -->
-<div id="preloader">
-  <div class="loader-inner">
-    <div class="loader-logo">
-      FAZ<span>GAME</span>
-    </div>
-    <div class="loader-bar-wrap">
-      <div class="loader-bar" id="loaderBar"></div>
-    </div>
-  </div>
-</div>
 
 <script>
-window.addEventListener("load", function(){
-
-  /* ===== LOADER ===== */
+/* UI & LIGHTBOX LOGIC */
+window.addEventListener("DOMContentLoaded", () => {
+  // Loader logic
   let progress = 0;
   const bar = document.getElementById("loaderBar");
   const preloader = document.getElementById("preloader");
-
   const interval = setInterval(() => {
     progress += 5;
-    bar.style.width = progress + "%";
-
-    if(progress >= 100){
+    if(bar) bar.style.width = progress + "%";
+    if(progress >= 100) {
       clearInterval(interval);
-
       setTimeout(() => {
         preloader.classList.add("hide");
-
-        // 🔥 Start counter AFTER loader disappears
         startCounters();
-
-      }, 500);
+      }, 400);
     }
+  }, 50);
 
-  }, 60);
+  // Lightbox logic
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
 
-
-  /* ===== COUNTER FUNCTION ===== */
-  function startCounters(){
-
-    const counters = document.querySelectorAll(".stat h2");
-
-    counters.forEach(counter => {
-
-      const target = parseInt(counter.getAttribute("data-target"));
-      const duration = 1500;
-      const startTime = performance.now();
-
-      function animate(currentTime){
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        const value = Math.floor(progress * target);
-        counter.textContent = value;
-
-        if(progress < 1){
-          requestAnimationFrame(animate);
-        } else {
-          counter.textContent = target + "+";
-          counter.classList.add("counter-glow");
-        }
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest(".hot-card");
+    if(card) {
+      const img = card.querySelector("img");
+      if(img) {
+        modalImg.src = img.src;
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
       }
+    }
+  });
 
-      requestAnimationFrame(animate);
-    });
-  }
+  modal.onclick = () => {
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
+  };
+});
 
+function startCounters() {
+  document.querySelectorAll(".stat h2").forEach(counter => {
+    const target = parseInt(counter.dataset.target);
+    let current = 0;
+    const update = () => {
+      current += target / 30;
+      if(current < target) {
+        counter.innerText = Math.ceil(current);
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target + "+";
+        counter.classList.add("counter-glow");
+      }
+    };
+    update();
+  });
+}
+
+// Banner Slider
+let currentSlide = 0;
+const slides = document.querySelectorAll('.banner-slide');
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 4000);
+
+// Smooth Scroll
+document.querySelectorAll('[data-scroll]').forEach(chip => {
+  chip.onclick = () => {
+    const target = document.getElementById(chip.dataset.scroll);
+    if(target) target.scrollIntoView({behavior: 'smooth'});
+  };
 });
 </script>
-
-</script>
-
 </body>
 </html>
