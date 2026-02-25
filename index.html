@@ -387,6 +387,7 @@ search.oninput = renderProducts;
 renderProducts();
 </script>
 
+<script>
 // Fast Sales Sort
 const fastGrid = document.querySelector('#fast-sales .hot-grid');
 if(fastGrid) {
@@ -394,8 +395,6 @@ if(fastGrid) {
   cards.sort((a,b) => (b.querySelector('.fast-new')?1:0) - (a.querySelector('.fast-new')?1:0));
   cards.forEach(c => fastGrid.appendChild(c));
 }
-
-<script>
 /* UI & LIGHTBOX LOGIC */
 window.addEventListener("DOMContentLoaded", () => {
   // Loader logic
