@@ -208,22 +208,46 @@ section{padding:60px 20px;max-width:1200px;margin:auto}
     left: 180%;
   }
 }
+
+.hot-card:hover::before {
+  animation: shineStrong 0.7s forwards;
+  opacity: 1;
+}
+
+@keyframes shineStrong {
+  to {
+    left: 180%;
+  }
+}
+
+.hot-card:hover::before {
+  animation: shineStrong 0.8s forwards;
+}
+
+@keyframes shineStrong {
+  to {
+    left: 180%;
+  }
+}
 /* ===============================
-   3D PARALLAX CARD EFFECT
+   STRONGER 3D PARALLAX
 ================================ */
 
 .tilt-card {
   transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform .15s ease;
+  perspective: 1400px;  /* was 1000 */
+  transition: transform .1s ease;
   will-change: transform;
 }
 
+.tilt-card img {
+  transform: translateZ(60px);
+}
+
 .tilt-card .hot-card-content,
-.tilt-card img,
 .tilt-card .fast-condition,
 .tilt-card .preorder-badge {
-  transform: translateZ(30px);
+  transform: translateZ(80px);
 }
 
 .tilt-card::before {
@@ -837,8 +861,8 @@ cards.forEach(card => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = -(y - centerY) / 12;
-    const rotateY = (x - centerX) / 12;
+    const rotateX = -(y - centerY) / 7;
+    const rotateY = (x - centerX) / 7;
 
     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
