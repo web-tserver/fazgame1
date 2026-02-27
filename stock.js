@@ -19,6 +19,7 @@ const STOCK = [
 { n:'FIFA 22', c:'ps5', type:'game', p:20, cond:'used' },
 { n:'Horizon Zero Dawn (No Case) ', c:'ps4', type:'game', p:20, cond:'used' },
 { n:'PS4 Slim 500gb 1 Controller', c:'console', type:'console', p:590, cond:'used' }
+{ n:'DS4 BLACK - PS4 Controller', c:'ps4', type:'Controller', p:90, cond:'used' }
 
 ];
 
