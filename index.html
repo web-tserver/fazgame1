@@ -159,7 +159,7 @@ section{padding:60px 20px;max-width:1200px;margin:auto}
               0 0 16px rgba(255,216,77,.25);
 }
   /* ================================
-   GLOBAL SHINE SWEEP EFFECT
+   HIGH IMPACT SHINE EFFECT
 ================================ */
 
 .hot-card {
@@ -170,27 +170,28 @@ section{padding:60px 20px;max-width:1200px;margin:auto}
 .hot-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
+  top: -20%;
+  left: -150%;
+  width: 80%;
+  height: 140%;
   background: linear-gradient(
     120deg,
-    transparent,
-    rgba(255,255,255,.28),
-    transparent
+    transparent 0%,
+    rgba(255,255,255,.45) 50%,
+    transparent 100%
   );
   transform: skewX(-25deg);
   pointer-events: none;
+  filter: blur(2px);
 }
 
 .hot-card:hover::before {
-  animation: shineSweep 0.9s forwards;
+  animation: shineStrong 0.8s forwards;
 }
 
-@keyframes shineSweep {
+@keyframes shineStrong {
   to {
-    left: 150%;
+    left: 180%;
   }
 }
 /* ===============================
