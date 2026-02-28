@@ -468,7 +468,11 @@ footer{text-align:center;padding:40px;color:#aaa;font-size:13px}
   </div>
 </div>
 
-<div class="sticky-cta"><a href="https://wa.me/60163691936" target="_blank" class="btn">Chat on WhatsApp</a></div>
+<div class="sticky-cta">
+  <a id="cta-whatsapp" href="#" class="btn">
+    Chat on WhatsApp
+  </a>
+</div>
 
 <section id="fast-sales" style="display:none;">
   <h2 class="section-title">Fast Sales</h2>
@@ -877,17 +881,15 @@ cards.forEach(card => {
 
 });
 </script>
-  <script>
-document.getElementById("wa-float").addEventListener("click", function(e){
+<script>
+document.getElementById("cta-whatsapp").addEventListener("click", function(e){
   e.preventDefault();
 
   const phone = "60163691936";
-  const message = "Hi FAZGAME 👋 I'm interested in your products.";
-  const encoded = encodeURIComponent(message);
+  const message = "Hi FAZGAME 👋 I would like to inquire about your products.";
+  const url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + encodeURIComponent(message);
 
-  const webUrl = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + encoded;
-
-  window.location.href = webUrl;
+  window.location.href = url;
 });
 </script>
 </body>
