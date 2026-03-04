@@ -146,7 +146,7 @@
 
     body {
       transition: var(--theme-transition);
-      overflow-x: hidden; /* prevents horizontal scroll from full-width button */
+      overflow-x: hidden;
     }
     body * {
       transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.2s ease;
@@ -640,8 +640,8 @@
     /* ===== BUTTONS AS COMPACT AS BADGES ===== */
     .reserve-btn,
     .product-buy {
-      padding: 3px 8px;        /* matching badge padding */
-      border-radius: 8px;
+      padding: 3px 8px;
+      border-radius: 30px;        /* pill shape */
       font-weight: 800;
       font-size: 11px;
     }
@@ -909,7 +909,7 @@
       top: 70px;
       z-index: 900;
       background: transparent;
-      padding: 12px 0;        /* removed left/right padding */
+      padding: 12px 0;
       text-align: center;
       width: 100%;
       margin: 0;
@@ -927,7 +927,7 @@
       font-size: 15px;
       box-shadow: 0 10px 30px -10px rgba(255,216,77,0.3);
       border: 1px solid rgba(255,216,77,0.3);
-      max-width: none;        /* ensure no max-width restriction */
+      max-width: none;
     }
 
     @media (min-width: 768px) {
@@ -1221,7 +1221,7 @@
       background: var(--accent);
       color: #000;
       border: none;
-      border-radius: 8px;
+      border-radius: 30px;        /* pill shape */
       font-weight: 800;
       font-size: 11px;
       display: inline-block;
@@ -1380,7 +1380,7 @@
       background: var(--accent);
       color: #000;
       border: none;
-      border-radius: 8px;
+      border-radius: 30px;        /* pill shape (was 8px) */
       font-weight: 800;
       font-size: 11px;
       pointer-events: auto;
@@ -1388,7 +1388,7 @@
       z-index: 10;
       position: relative;
       white-space: nowrap;
-      padding: 3px 8px;  /* matching badge */
+      padding: 3px 8px;
     }
 
     .hot-card .reserve-btn:hover {
@@ -1469,18 +1469,21 @@
       }
     }
 
-    /* Pause lamp animation on mobile for performance */
-    @media (max-width: 768px) {
-      .lamp-wrap {
-        animation-play-state: paused;
-      }
-    }
+    /* Lamp animation now plays on mobile (removed pause) */
 
     /* Faster reveal animation on mobile */
     @media (max-width: 768px) {
       .reveal {
         transition: opacity 0.4s ease, transform 0.4s ease;
         transform: translateY(15px);
+      }
+    }
+
+    /* Ensure buttons stay bold on mobile */
+    @media (max-width: 768px) {
+      .reserve-btn,
+      .product-buy {
+        font-weight: 800 !important;
       }
     }
 
